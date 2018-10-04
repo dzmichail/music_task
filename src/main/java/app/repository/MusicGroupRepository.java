@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface MusicGroupRepository extends JpaRepository<MusicGroup, Integer> {
 
-    //@Query("select g from MusicGroup as g where g.id = :id")
-    //MusicGroup getMusicGroup(@Param("id") Integer id);
+    @Query("select g from MusicGroup as g where g.id = :id")
+    MusicGroup getMusicGroup(@Param("id") Integer id);
 
 }

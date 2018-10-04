@@ -22,7 +22,8 @@ public class Album {
 
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy ="compositionAlbum")
     private List<Composition> compositionList = new ArrayList<Composition>();
 
     @Temporal(TemporalType.DATE)

@@ -3,9 +3,11 @@ package app.controller;
 
 import app.dto.CompositionDTO;
 import app.dto.ExecutorDTO;
+import app.dto.MusicGroupDTO;
 import app.entity.MusicGroup;
 import app.repository.MusicGroupRepository;
 import app.service.IMusicService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +19,13 @@ import javax.validation.Valid;
 public class Controller {
 
     private IMusicService musicService;
-    private MusicGroupRepository musicGroupRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Autowired
     public Controller(IMusicService musicService, MusicGroupRepository musicGroupRepository){
         this.musicService=musicService;
-        this.musicGroupRepository=musicGroupRepository;
     }
 
     @RequestMapping(value = "/get/{value}", method = RequestMethod.GET)
@@ -41,8 +44,7 @@ public class Controller {
     }
 
     @RequestMapping(value="/getmusic", method = RequestMethod.GET)
-    public MusicGroup getMusic(@RequestParam("id") Integer id){
-//        return musicGroupRepository.getOne(id);
+    public MusicGroupDTO getMusic(@RequestParam("id") Integer id){
         return musicService.getMusic(id);
     }
 

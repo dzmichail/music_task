@@ -20,6 +20,7 @@ public class Composition {
 
     private Long duration;
 
-//    @ManyToOne
-//    private Album compositionAlbum;
+    @ManyToOne
+    @JoinColumn(name = "album_fk")
+    private Album compositionAlbum;
 }

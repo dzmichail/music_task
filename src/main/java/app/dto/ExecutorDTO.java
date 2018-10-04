@@ -30,6 +30,7 @@ public class ExecutorDTO {
     @NotNull
     private Role role;
 
+    @NotNull
     private Integer musicGroupId;
 
 }
