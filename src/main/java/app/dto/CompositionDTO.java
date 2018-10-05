@@ -17,6 +17,10 @@ public class CompositionDTO {
 
     @NotBlank
     private String name;
+
     @NotNull
     private Long duration;
+
+    @NotNull
+    private Integer compositionAlbum;
 }

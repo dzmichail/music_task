@@ -4,10 +4,7 @@ import app.dto.CompositionDTO;
 import app.service.IMusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Validated
@@ -24,6 +21,12 @@ public class CompositionController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public CompositionDTO get(@PathVariable Integer id){
         return musicService.getComposition(id);
+    }
+
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public void saveComp(@RequestBody CompositionDTO cdto){
+        musicService.saveComp(cdto);
     }
 
 }

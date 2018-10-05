@@ -4,10 +4,9 @@ import app.dto.ExecutorDTO;
 import app.service.IMusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @Validated
@@ -26,6 +25,9 @@ public class ExecutorController {
         return musicService.getExec(id);
     }
 
-
+    @RequestMapping(value="/", method=RequestMethod.POST)
+    public void saveExec(@RequestBody @Valid ExecutorDTO ex){
+        musicService.saveExec(ex);
+    }
 
 }

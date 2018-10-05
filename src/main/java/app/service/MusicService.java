@@ -38,12 +38,19 @@ public class MusicService implements IMusicService {
     //Composition
     public void saveComp(CompositionDTO cdto){
 
-        Composition comp = new Composition();
+        Album album = albumRepository.getAlbum(cdto.getCompositionAlbum());
 
-        comp.setDuration(cdto.getDuration());
-        comp.setName(cdto.getName());
+        if (album!=null){
 
-        compositionRepository.save(comp);
+            Composition comp = new Composition();
+
+            comp.setDuration(cdto.getDuration());
+            comp.setName(cdto.getName());
+            comp.setCompositionAlbum(album);
+
+            compositionRepository.save(comp);
+        }
+
     }
 
     @Override
@@ -55,6 +62,7 @@ public class MusicService implements IMusicService {
             cdto.setId(comp.getId());
             cdto.setName(comp.getName());
             cdto.setDuration(comp.getDuration());
+            cdto.setCompositionAlbum(comp.getCompositionAlbum().getId());
 
             return cdto;
         }
@@ -163,8 +171,16 @@ public class MusicService implements IMusicService {
         return null;
     }
 
+    public void saveAlbum(AlbumDTO adto){
+        MusicGroup mg = musicGroupRepository.getMusicGroup(adto.getMusicGroupId());
 
+        if (mg!=null){
+            Album album = new Album();
+            album.setTitle(adto.getTitle());
+            album.setReleaseDate(adto.getReleazeDate());
+            album.setAlbumMusicGroup(mg);
 
-
-
+            albumRepository.save(album);
+        }
+    }
 }
